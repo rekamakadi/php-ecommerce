@@ -7,6 +7,8 @@
     <title>Admin Dashboard</title>
     <!-- bootstrap css link -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- font awesome link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- css file -->
     <link rel="stylesheet" href="../style.css">
 </head>
@@ -38,7 +40,7 @@
                 <div class="button text-center">
                     <button><a href="" class="nav-link text-light bg-info m-1">Insert Products</a></button>
                     <button><a href="" class="nav-link text-light bg-info m-1">View Products</a></button>
-                    <button><a href="" class="nav-link text-light bg-info m-1">Insert Categories</a></button>
+                    <button><a href="/admin_area/index.php?insert_category" class="nav-link text-light bg-info m-1">Insert Categories</a></button>
                     <button><a href="" class="nav-link text-light bg-info m-1">View Categories</a></button>
                     <button><a href="" class="nav-link text-light bg-info m-1">Insert Brands</a></button>
                     <button><a href="" class="nav-link text-light bg-info m-1">View Brands</a></button>
@@ -49,10 +51,17 @@
                 </div>
             </div>
         </div>
-<!-- footer -->
-<div class="bg-info p-3 text-center footer">
-        <p>All rights reserved * eCom * 2024</p>
-    </div>
+        <div class="container my-5">
+            <?php
+            if (isset($_GET['insert_category'])) {
+                include('insert_categories.php');
+            }
+            ?>
+        </div>
+        <!-- footer -->
+        <div class="bg-info p-3 text-center footer">
+            <p>All rights reserved * eCom * 2024</p>
+        </div>
     </div>
 
 
