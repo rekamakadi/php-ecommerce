@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -106,7 +102,9 @@
             <!-- sidenav -->
             <ul class="navbar-nav me-auto text-center">
                 <li class="nav-item bg-info">
-                    <a href="#" class="nav-link text-light"><h4>Delivery Brands</h4></a>
+                    <a href="#" class="nav-link text-light">
+                        <h4>Delivery Brands</h4>
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link text-light">Brand1</a>
@@ -126,7 +124,9 @@
             </ul>
             <ul class="navbar-nav me-auto text-center">
                 <li class="nav-item bg-info">
-                    <a href="#" class="nav-link text-light"><h4>Categories</h4></a>
+                    <a href="#" class="nav-link text-light">
+                        <h4>Categories</h4>
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link text-light">Category1</a>
@@ -148,7 +148,7 @@
     </div>
 
     <!-- footer -->
-    <div class="bg-info p-3 text-center">
+    <div class="bg-info p-3 text-center footer">
         <p>All rights reserved * eCom * 2024</p>
     </div>
 
