@@ -1,3 +1,7 @@
+<?php
+include('../includes/connect.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,17 +38,29 @@
             <div class="form-outline mb-4 w-50 m-auto">
                 <select name="product_category" id="" class="form-select">
                     <option value="">Select a Category</option>
-                    <option value="">C1</option>
-                    <option value="">C2</option>
-                    <option value="">C3</option>
+                    <?php
+                    $select_query = 'SELECT * FROM categories';
+                    $result_query = mysqli_query($con, $select_query);
+                    while ($row = mysqli_fetch_assoc($result_query)) {
+                        $category_title = $row['category_title'];
+                        $category_id = $row['category_id'];
+                        echo "<option value=''>{$category_title}</option>";
+                    }
+                    ?>
                 </select>
             </div>
             <div class="form-outline mb-4 w-50 m-auto">
                 <select name="product_brands" id="" class="form-select">
                     <option value="">Select a Brand</option>
-                    <option value="">B1</option>
-                    <option value="">B2</option>
-                    <option value="">B3</option>
+                    <?php
+                    $select_query = 'SELECT * FROM brands';
+                    $result_query = mysqli_query($con, $select_query);
+                    while ($row = mysqli_fetch_assoc($result_query)) {
+                        $brand_title = $row['brand_title'];
+                        $brand_id = $row['brand_id'];
+                        echo "<option value=''>{$brand_title}</option>";
+                    }
+                    ?>
                 </select>
             </div>
             <div class="form-outline mb-4 w-50 m-auto">
