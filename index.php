@@ -29,10 +29,10 @@ include('functions/common_function.php');
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Products</a>
+                            <a class="nav-link" href="display_all.php">Products</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Register</a>
@@ -102,9 +102,7 @@ include('functions/common_function.php');
     </div>
 
     <!-- footer -->
-    <div class="bg-info p-3 text-center footer">
-        <p>All rights reserved * eCom * 2024</p>
-    </div>
+    <?php include("./includes/footer.php") ?>
 
     <!-- bootstrap js link-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
