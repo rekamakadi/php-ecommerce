@@ -56,6 +56,12 @@ include('functions/common_function.php');
         </nav>
     </div>
 
+    <!-- calling cart function -->
+    <?php
+    cart();
+    ?>
+
+
     <!-- header -->
     <div class="bg-light">
         <h3 class="text-center">eCom Store</h3>

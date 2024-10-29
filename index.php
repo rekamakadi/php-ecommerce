@@ -56,6 +56,11 @@ include('functions/common_function.php');
         </nav>
     </div>
 
+    <!-- calling cart function -->
+    <?php
+    cart();
+    ?>
+
     <!-- header -->
     <div class="bg-light">
         <h3 class="text-center">eCom Store</h3>
@@ -73,8 +78,8 @@ include('functions/common_function.php');
                 getproducts();
                 get_unique_categories();
                 get_unique_brands();
-                $ip = getIPAddress();
-                echo 'User Real IP Address - ' . $ip;
+                // $ip = getIPAddress();
+                // echo 'User Real IP Address - ' . $ip;
                 ?>
             </div>
         </div>
