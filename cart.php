@@ -89,20 +89,22 @@ include('functions/common_function.php');
                             $product_image1 = $row_product_price['product_image1'];
                             $product_values = array_sum($product_price);
                             $total += $product_values;
+                    ?>
+                            <tr>
+                                <td><?php echo $product_title ?></td>
+                                <td><img src="/admin_area/product_images/<?php echo $product_image1 ?>" alt="" class="cart-img"></td>
+                                <td><input type="text" name="" id="" class="form-input w-50"></td>
+                                <td><?php echo $price_table ?>/-</td>
+                                <td><input type="checkbox"></td>
+                                <td>
+                                    <button class="bg-info  p-3 border-0">Update</button>
+                                    <button class="bg-info  p-3 border-0">Remove</button>
+                                </td>
+                            </tr>
+                    <?php
                         }
                     }
                     ?>
-                    <tr>
-                        <td><?php echo $product_title ?></td>
-                        <td><img src="/admin_area/product_images/<?php echo $product_image1 ?>" alt="" class="cart-img"></td>
-                        <td><input type="text" name="" id="" class="form-input w-50"></td>
-                        <td><?php echo $price_table ?>/-</td>
-                        <td><input type="checkbox"></td>
-                        <td>
-                            <button class="bg-info  p-3 border-0">Update</button>
-                            <button class="bg-info  p-3 border-0">Remove</button>
-                        </td>
-                    </tr>
                 </tbody>
             </table>
             <!-- subtotal -->
