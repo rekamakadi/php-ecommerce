@@ -70,25 +70,44 @@ include('functions/common_function.php');
                     <th>Quantity</th>
                     <th>Total Price</th>
                     <th>Remove</th>
-                    <th>Operations</th>
+                    <th colspan="2">Operations</th>
                 </thead>
                 <tbody>
+                    <?php
+                    $ip = getIPAddress();
+                    $total = 0;
+                    $cart_query = "SELECT * FROM cart_details WHERE ip_address='$ip'";
+                    $result = mysqli_query($con, $cart_query);
+                    while ($row = mysqli_fetch_array($result)) {
+                        $product_id = $row['product_id'];
+                        $select_products = "SELECT * FROM products WHERE product_id='$product_id'";
+                        $result_products = mysqli_query($con, $select_products);
+                        while ($row_product_price = mysqli_fetch_array($result_products)) {
+                            $product_price = array($row_product_price['product_price']);
+                            $price_table = $row_product_price['product_price'];
+                            $product_title = $row_product_price['product_title'];
+                            $product_image1 = $row_product_price['product_image1'];
+                            $product_values = array_sum($product_price);
+                            $total += $product_values;
+                        }
+                    }
+                    ?>
                     <tr>
-                        <td>Title</td>
-                        <td>IMG</td>
-                        <td><input type="text" name="" id=""></td>
-                        <td>TP</td>
+                        <td><?php echo $product_title ?></td>
+                        <td><img src="/admin_area/product_images/<?php echo $product_image1 ?>" alt="" class="cart-img"></td>
+                        <td><input type="text" name="" id="" class="form-input w-50"></td>
+                        <td><?php echo $price_table ?>/-</td>
                         <td><input type="checkbox"></td>
                         <td>
-                            <p>Update</p>
-                            <p>Remove</p>
+                            <button class="bg-info  p-3 border-0">Update</button>
+                            <button class="bg-info  p-3 border-0">Remove</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
             <!-- subtotal -->
             <div class="d-flex mb-5">
-                <h4 class="px-3">Subtotal: <strong class="text-info">STP/-</strong></h4>
+                <h4 class="px-3">Subtotal: <strong class="text-info"><?php echo $total ?>/-</strong></h4>
                 <a href="index.php"><button class="bg-info  p-3 border-0">Continue shopping</button></a>
                 <a href="#"><button class="bg-secondary  p-3 border-0 text-light">Checkout</button></a>
             </div>

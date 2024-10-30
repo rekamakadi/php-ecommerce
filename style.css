@@ -27,3 +27,9 @@
     bottom: 0;
     left: 0;
 }
+
+.cart-img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
