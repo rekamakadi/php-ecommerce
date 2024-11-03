@@ -63,59 +63,75 @@ include('functions/common_function.php');
     <!-- table -->
     <div class="container">
         <div class="row">
-            <table class="table table-bordered text-center">
-                <thead>
-                    <th>Product Title</th>
-                    <th>Product Image</th>
-                    <th>Quantity</th>
-                    <th>Total Price</th>
-                    <th>Remove</th>
-                    <th colspan="2">Operations</th>
-                </thead>
-                <tbody>
-                    <?php
-                    $ip = getIPAddress();
-                    $total = 0;
-                    $cart_query = "SELECT * FROM cart_details WHERE ip_address='$ip'";
-                    $result = mysqli_query($con, $cart_query);
-                    while ($row = mysqli_fetch_array($result)) {
-                        $product_id = $row['product_id'];
-                        $select_products = "SELECT * FROM products WHERE product_id='$product_id'";
-                        $result_products = mysqli_query($con, $select_products);
-                        while ($row_product_price = mysqli_fetch_array($result_products)) {
-                            $product_price = array($row_product_price['product_price']);
-                            $price_table = $row_product_price['product_price'];
-                            $product_title = $row_product_price['product_title'];
-                            $product_image1 = $row_product_price['product_image1'];
-                            $product_values = array_sum($product_price);
-                            $total += $product_values;
-                    ?>
-                            <tr>
-                                <td><?php echo $product_title ?></td>
-                                <td><img src="/admin_area/product_images/<?php echo $product_image1 ?>" alt="" class="cart-img"></td>
-                                <td><input type="text" name="" id="" class="form-input w-50"></td>
-                                <td><?php echo $price_table ?>/-</td>
-                                <td><input type="checkbox"></td>
-                                <td>
-                                    <button class="bg-info  p-3 border-0">Update</button>
-                                    <button class="bg-info  p-3 border-0">Remove</button>
-                                </td>
-                            </tr>
-                    <?php
+            <form action="" method="post">
+                <table class="table table-bordered text-center">
+                    <thead>
+                        <th>Product Title</th>
+                        <th>Product Image</th>
+                        <th>Quantity</th>
+                        <th>Total Price</th>
+                        <th>Remove</th>
+                        <th colspan="2">Operations</th>
+                    </thead>
+                    <tbody>
+                        <?php
+                        global $con;
+                        $ip = getIPAddress();
+                        $total = 0;
+                        $cart_query = "SELECT * FROM cart_details WHERE ip_address='$ip'";
+                        $result = mysqli_query($con, $cart_query);
+                        while ($row = mysqli_fetch_array($result)) {
+                            $product_id = $row['product_id'];
+                            $select_products = "SELECT * FROM products WHERE product_id='$product_id'";
+                            $result_products = mysqli_query($con, $select_products);
+                            while ($row_product_price = mysqli_fetch_array($result_products)) {
+                                $product_price = $row_product_price['product_price'];
+                                $product_title = $row_product_price['product_title'];
+                                $product_image1 = $row_product_price['product_image1'];
+                                $total += $product_price * $row['quantity'];
+                        ?>
+                                <tr>
+                                    <td><?php echo $product_title ?></td>
+                                    <td><img src="/admin_area/product_images/<?php echo $product_image1 ?>" alt="" class="cart-img"></td>
+                                    <td>
+                                        <?php
+                                        if (isset($_POST['update_cart'])) {
+                                            foreach ($_POST['qty'] as $product_id => $quantity) {
+                                                if (is_numeric($quantity) && $quantity > 0) {
+                                                    $update_cart = "UPDATE cart_details SET quantity = $quantity WHERE ip_address = '$ip' AND product_id = $product_id";
+                                                    $result_products_quantity = mysqli_query($con, $update_cart);
+
+                                                    if (!$result_products_quantity) {
+                                                        echo "Error updating cart: " . mysqli_error($con);
+                                                    }
+                                                }
+                                            }
+                                            echo "<script>alert('Cart updated successfully!'); window.location.href='cart.php';</script>";
+                                        }
+                                        ?> <input type="number" name="qty[<?php echo $product_id; ?>]" class="form-input w-50" min="1" value="<?php echo $row['quantity']; ?>">
+                                    </td>
+                                    <td><?php echo $product_price * $row['quantity'] ?>/-</td>
+                                    <td><input type="checkbox" name="remove[]" value="<?php echo $product_id; ?>"></td>
+                                    <td>
+                                        <input type="submit" value="Update cart" class="bg-info p-3 border-0" name="update_cart">
+                                        <button type="submit" class="bg-info p-3 border-0" name="remove_item" value="<?php echo $product_id; ?>">Remove</button>
+                                    </td>
+                                </tr>
+                        <?php
+                            }
                         }
-                    }
-                    ?>
-                </tbody>
-            </table>
-            <!-- subtotal -->
-            <div class="d-flex mb-5">
-                <h4 class="px-3">Subtotal: <strong class="text-info"><?php echo $total ?>/-</strong></h4>
-                <a href="index.php"><button class="bg-info  p-3 border-0">Continue shopping</button></a>
-                <a href="#"><button class="bg-secondary  p-3 border-0 text-light">Checkout</button></a>
-            </div>
+                        ?>
+                    </tbody>
+                </table>
+                <!-- subtotal -->
+                <div class="d-flex mb-5">
+                    <h4 class="px-3">Subtotal: <strong class="text-info"><?php echo $total ?>/-</strong></h4>
+                    <a href="index.php"><button class="bg-info  p-3 border-0">Continue shopping</button></a>
+                    <a href="#"><button class="bg-secondary  p-3 border-0 text-light">Checkout</button></a>
+                </div>
         </div>
     </div>
-
+    </form>
 
     <!-- footer -->
     <?php include("./includes/footer.php") ?>
