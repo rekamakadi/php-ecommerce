@@ -1,6 +1,4 @@
 <?php
-// including connet file
-include('./includes/connect.php');
 
 //getting products
 function getproducts()
