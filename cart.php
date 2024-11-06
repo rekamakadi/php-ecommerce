@@ -141,9 +141,9 @@ include('functions/common_function.php');
                     $result = mysqli_query($con, $cart_query);
                     $result_count = mysqli_num_rows($result);
                     if ($result_count > 0) {
-                        echo "<h4 class='px-3'>Subtotal: <strong class='text-info'> $total_price/-</strong></h4>
+                        echo "<h4 class='px-3'>Subtotal: <strong class='text-info'> $total/-</strong></h4>
                     <input type='submit' value='Continue Shopping' class='bg-info p-3 border-0' name='continue_shopping'>
-                    <a href=''><button class='bg-secondary  p-3 border-0 text-light'>Checkout</button></a>";
+                    <button class='bg-secondary  p-3 border-0 text-light'><a href='checkout.php' class='text-light text-decoration-none'>Checkout</a></button>";
                     } else {
                         echo "<input type='submit' value='Continue Shopping' class='bg-info p-3 border-0' name='continue_shopping'>";
                     }
