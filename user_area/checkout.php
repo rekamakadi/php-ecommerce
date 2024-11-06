@@ -29,10 +29,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                            <a class="nav-link active" aria-current="page" href="../index.php">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="display_all.php">Products</a>
+                            <a class="nav-link" href="../display_all.php">Products</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Register</a>
@@ -58,9 +58,9 @@
             <div class="row">
                 <?php
                 if (!isset($_SESSION['username'])) {
-                    include('user_area/user_login.php');
+                    include('./user_login.php');
                 } else {
-                    include('payment.php');
+                    include('../payment.php');
                 }
                 ?>
             </div>
@@ -68,7 +68,7 @@
     </div>
 
     <!-- footer -->
-    <?php include("./includes/footer.php") ?>
+    <?php include("../includes/footer.php") ?>
 
     <!-- bootstrap js link-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
