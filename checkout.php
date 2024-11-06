@@ -53,19 +53,19 @@
         <p class="text-center">With the right tools possibilities are endless</p>
     </div>
 
-<div class="row px-1">
-    <div class="col-md-12">
-        <div class="row">
-            <?php
-            if (!isset($_SESSION['username'])){
-include('user_area/user_login.php');
-            } else {
-                include('payment.php');
-            }
-            ?>
+    <div class="row px-1">
+        <div class="col-md-12">
+            <div class="row">
+                <?php
+                if (!isset($_SESSION['username'])) {
+                    include('user_area/user_login.php');
+                } else {
+                    include('payment.php');
+                }
+                ?>
+            </div>
         </div>
     </div>
-</div>
 
     <!-- footer -->
     <?php include("./includes/footer.php") ?>

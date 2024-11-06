@@ -44,7 +44,7 @@
                         <input type="text" id="user_contact" placeholder="Enter your phone number" autocomplete="off" required="required" class="form-control" name="user_contact">
                     </div>
                     <div class="text-center mt-4 pt-2">
-                        <input type="submit" class="bg-info py-2 px-3 border-0" name="user_register">
+                        <input type="submit" value="Register" class="bg-info py-2 px-3 border-0" name="user_register">
                         <p class="small fw-bold mt-2 pt-1 mb-0">Already have an account? <a href="user_login.php" class="text-danger">Login</a></p>
                     </div>
                 </form>
