@@ -58,9 +58,9 @@
             <div class="row">
                 <?php
                 if (!isset($_SESSION['username'])) {
-                    include('./user_login.php');
+                    include('user_login.php');
                 } else {
-                    include('../payment.php');
+                    include('payment.php');
                 }
                 ?>
             </div>
