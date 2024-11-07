@@ -14,7 +14,7 @@
         <h2 class="text-center">User Login</h2>
         <div class="rowd-flex align-items-center justify-content-center">
             <div class="col-lg-12 col-xl-6">
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="" method="post">
                     <div class="form-outline m-4">
                         <label for="user_username" class="form-label">Username</label>
                         <input type="text" id="user_username" placeholder="Enter your username" autocomplete="off" required="required" class="form-control" name="user_username">
@@ -34,3 +34,25 @@
 </body>
 
 </html>
+
+<?php
+if (isset($_POST['user_login'])){
+    $user_username = $_POST['user_username'];
+    $user_password = $_POST['user_password'];
+
+    $select_query = "SELECT * FROM user_table WHERE username = '$user_username'";
+    $result = mysqli_query($con, $select_query);
+    $row_data = mysqli_fetch_assoc($result);
+    $row_count =  mysqli_num_rows($result);
+    if ($row_count > 0) {
+        if (password_verify($user_password, $row_data['user_password'])) {
+        echo "<script>alert('You have logged in successfully')</script>";
+        } else {
+        echo "<script>alert('Invalid credtentials')</script>";
+        }
+    } else {
+        echo "<script>alert('Invalid credtentials')</script>";
+    }
+
+}
+?>
