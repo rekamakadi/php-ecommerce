@@ -1,5 +1,6 @@
 <?php
 include('functions/common_function.php');
+include('includes/connect.php');
 ?>
 
 <!DOCTYPE html>
