@@ -1,5 +1,6 @@
 <?php
 include('../includes/connect.php');
+// include('../functions/common_function.php');
 session_start();
 ?>
 
@@ -15,7 +16,7 @@ session_start();
     <!-- font awesome link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- css file -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
@@ -23,7 +24,7 @@ session_start();
     <div class="container-fluid p-0">
         <nav class="navbar navbar-expand-lg bg-info">
             <div class="container-fluid">
-                <img src="./images/logo.webp" alt="logo" class="logo">
+                <img src="../images/logo.webp" alt="logo" class="logo">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
