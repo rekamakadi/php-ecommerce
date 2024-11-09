@@ -56,7 +56,7 @@ session_start();
     cart();
     ?>
 
-    -- login -->
+    <!-- login -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
         <ul class="navbar-nav me-auto">
 
