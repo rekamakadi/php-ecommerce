@@ -1,6 +1,7 @@
 <?php
 include('functions/common_function.php');
 include('includes/connect.php');
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -54,6 +55,33 @@ include('includes/connect.php');
     <?php
     cart();
     ?>
+
+    -- login -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+        <ul class="navbar-nav me-auto">
+
+            <?php
+            if (!isset($_SESSION['username'])) {
+                echo "<li class='nav-item'>
+                    <a href='#' class='nav-link'>Welcome Guest</a>
+                </li>
+                <li class='nav-item'>
+                    <a href='./user_area/user_login.php' class='nav-link'>Login</a>
+                </li>
+                ";
+            } else {
+                echo "<li class='nav-item'>
+                    <a href='#' class='nav-link'>Welcome " . $_SESSION['username'] . "</a>
+                </li>
+                <li class='nav-item'>
+                    <a href='./user_area/user_login.php' class='nav-link'>Logout</a>
+                </li>
+                ";
+            }
+            ?>
+
+        </ul>
+    </nav>
 
     <!-- header -->
     <div class="bg-light">
@@ -149,7 +177,7 @@ include('includes/connect.php');
                         echo "<input type='submit' value='Continue Shopping' class='bg-info p-3 border-0' name='continue_shopping'>";
                     }
 
-                    if (isset($_POST['continue_shopping'])){
+                    if (isset($_POST['continue_shopping'])) {
                         echo "<script>window.open('index.php', '_self')</script>";
                     }
                     ?>
