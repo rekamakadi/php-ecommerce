@@ -1,9 +1,12 @@
 <?php
 include('../includes/connect.php');
 include('../functions/common_function.php');
+session_start();
 
-if (isset($_GET['user:id'])) {
-    $user_id = $_GET['user_id'];
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+} else {
+    die("Error: User ID is not defined.");
 }
 
 // getting total items + total price of all items
@@ -40,16 +43,16 @@ if ($quantity == 0) {
 }
 
 $insert_orders = "INSERT INTO user_orders (user_id, amount_due, invoice_number, total_products, order_date, order_status) VALUES ($user_id, $subtotal, $invoice_number, $count_products, NOW(), '$status')";
-$reuslt_query = mysqli_query($con, $insert_orders);
-if ($reuslt_query) {
+$result_query = mysqli_query($con, $insert_orders);
+if ($result_query) {
+    // orders pending
+    $insert_pending_orders = "INSERT INTO orders_pending (user_id, invoice_number, product_id, quantity, order_status) VALUES ($user_id, $invoice_number, $product_id, $quantity, '$status')";
+    $result_pending_orders = mysqli_query($con, $insert_pending_orders);
+
+    // delete items from cart
+    $empty_cart = "DELETE FROM cart_details WHERE ip_address = '$get_ip_address'";
+    $result_delete = mysqli_query($con, $empty_cart);
+
     echo "<script>alert('Orders are submitted successfully')</script>";
     echo "<script>window.open('profile.php', '_self')</script>";
 }
-
-// orders pending
-$insert_pending_orders = "INSERT INTO orders_pending (user_id, invoice_number, product_id, quntity, order_status) VALUES ($user_id, $invoice_number, $product_id, $quantity, '$status')";
-$reuslt_pending_orders = mysqli_query($con, $insert_pending_orders);
-
-// delete items from cart
-$empty_cart = "DELETE FROM cart_details WHERE ip_address = $get_ip_address";
-$result_delete = mysqli_query($con, $empty_cart);

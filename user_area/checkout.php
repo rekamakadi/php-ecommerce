@@ -37,7 +37,7 @@ session_start();
                             <a class="nav-link" href="../display_all.php">Products</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../user_area/user_registration.php">Register</a>
+                            <a class="nav-link" href="user_registration.php">Register</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>
@@ -59,7 +59,7 @@ session_start();
                     <a href='#' class='nav-link'>Welcome Guest</a>
                 </li>
                 <li class='nav-item'>
-                    <a href='./user_area/user_login.php' class='nav-link'>Login</a>
+                    <a href='user_login.php' class='nav-link'>Login</a>
                 </li>
                 ";
             } else {
@@ -67,7 +67,7 @@ session_start();
                     <a href='#' class='nav-link'>Welcome " . $_SESSION['username'] . "</a>
                 </li>
                 <li class='nav-item'>
-                    <a href='./user_area/user_login.php' class='nav-link'>Logout</a>
+                    <a href='logout.php' class='nav-link'>Logout</a>
                 </li>
                 ";
             }

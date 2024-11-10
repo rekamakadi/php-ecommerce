@@ -1,7 +1,7 @@
 <?php
 include('../includes/connect.php');
 include('../functions/common_function.php');
-session_start();
+// session_start();
 ?>
 
 <!DOCTYPE html>
@@ -51,6 +51,7 @@ if (isset($_POST['user_login'])) {
     $row_data = mysqli_fetch_assoc($result);
     $row_count =  mysqli_num_rows($result);
     $user_ip = getIPAddress();
+    $user_id = $row_data['user_id'];
 
     $select_query_cart = "SELECT * FROM cart_details WHERE ip_address = '$user_ip'";
     $result_cart = mysqli_query($con, $select_query_cart);
@@ -59,18 +60,20 @@ if (isset($_POST['user_login'])) {
         if (password_verify($user_password, $row_data['user_password'])) {
             if ($row_count == 1 and $row_count_cart == 0) {
                 $_SESSION['username'] = $user_username;
+                $_SESSION['user_id'] = $user_id;
                 echo "<script>alert('You have logged in successfully')</script>";
                 echo "<script>window.open('profile.php', '_self')</script>";
             } else {
                 $_SESSION['username'] = $user_username;
+                $_SESSION['user_id'] = $user_id;
                 echo "<script>alert('You have logged in successfully')</script>";
                 echo "<script>window.open('payment.php', '_self')</script>";
             }
         } else {
-            echo "<script>alert('Invalid credtentials')</script>";
+            echo "<script>alert('Invalid credentials')</script>";
         }
     } else {
-        echo "<script>alert('Invalid credtentials')</script>";
+        echo "<script>alert('Invalid credentials')</script>";
     }
 }
 ?>

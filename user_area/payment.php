@@ -1,7 +1,6 @@
 <?php
 include('../functions/common_function.php');
 include('../includes/connect.php');
-// session_start();
 ?>
 
 <!DOCTYPE html>
@@ -17,12 +16,11 @@ include('../includes/connect.php');
 
 <body>
     <?php
-        $user_ip = getIPAddress();
-        $get_user = "SELECT * FROM user_table WHERE user_ip = '$user_ip'";
-        $result = mysqli_query($con, $get_user);
-        $run_query = mysqli_fetch_array($result);
-        $user_id = $run_query['user_id'];
-
+    $user_ip = getIPAddress();
+    $get_user = "SELECT * FROM user_table WHERE user_ip = '$user_ip'";
+    $result = mysqli_query($con, $get_user);
+    $run_query = mysqli_fetch_array($result);
+    
     ?>
     <div class="container">
         <h2 class="text-center text-info">Payment Options</h2>
@@ -31,9 +29,7 @@ include('../includes/connect.php');
                 <a href="https://www.paypal.com" target="blank"><img src="../images/payment_options.png" alt="" class="w-100% m-auto d-block"></a>
             </div>
             <div class="col-md-6">
-                <a href="order.php?user_id=<?php
-                
-                ?>">
+                <a href="order.php">
                     <h2 class="text-center">Pay Offline</h2>
                 </a>
             </div>
