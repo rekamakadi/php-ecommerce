@@ -95,57 +95,59 @@ session_start();
         <h3 class="text-center">eCom Store</h3>
         <p class="text-center">With the right tools possibilities are endless</p>
     </div>
-
     <!-- content -->
-    <div class="col-md-2 h-100">
-        <ul class="navbar-nav bg-secondary text-center">
-            <li class="nav-item bg-info">
-                <a href="#" class="nav-link text-light">
-                    <h4>Your Profile</h4>
-                </a>
-            </li>
-            <?php
-            $username = $_SESSION['username'];
-            $user_image = "SELECT * FROM user_table WHERE username = '$username'";
-            $result_image_query = mysqli_query($con, $user_image);
-            $row_image = mysqli_fetch_array($result_image_query);
-            $user_image = $row_image['user_image'];
-            echo "<li class='nav-item'>
+    <div class="container d-flex align-items-start p-0 mx-0">
+        <div class="col-md-2 h-100 p-0">
+            <ul class="navbar-nav bg-secondary text-center">
+                <li class="nav-item bg-info">
+                    <a href="#" class="nav-link text-light">
+                        <h4>Your Profile</h4>
+                    </a>
+                </li>
+                <?php
+                $username = $_SESSION['username'];
+                $user_image = "SELECT * FROM user_table WHERE username = '$username'";
+                $result_image_query = mysqli_query($con, $user_image);
+                $row_image = mysqli_fetch_array($result_image_query);
+                $user_image = $row_image['user_image'];
+                echo "<li class='nav-item'>
                 <img src='./user_images/$user_image' alt='' class='w-100 h-100 d-block m-auto p-4 object-fit-contain'>
             </li>"
-            ?>
+                ?>
 
 
-            <li class="nav-item">
-                <a href="profile.php" class="nav-link text-light">
-                    <h4>Pending Orders</h4>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="prorfile.php?edit_account" class="nav-link text-light">
-                    <h4>Edit Account</h4>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="profile.php?my_orders" class="nav-link text-light">
-                    <h4>My Orders</h4>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="profile.php?delete account" class="nav-link text-light">
-                    <h4>Delete Account</h4>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="logout.php" class="nav-link text-light">
-                    <h4>Logout</h4>
-                </a>
-            </li>
-        </ul>
+                <li class="nav-item">
+                    <a href="profile.php" class="nav-link text-light">
+                        <h4>Pending Orders</h4>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="profile.php?edit_account" class="nav-link text-light">
+                        <h4>Edit Account</h4>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="profile.php?my_orders" class="nav-link text-light">
+                        <h4>My Orders</h4>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="profile.php?delete_account" class="nav-link text-light">
+                        <h4>Delete Account</h4>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="logout.php" class="nav-link text-light">
+                        <h4>Logout</h4>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-10">
+            <?php get_user_order_details(); ?>
+        </div>
     </div>
-    <div class="col-md-10">
 
-    </div>
     <!-- footer -->
     <?php include("../includes/footer.php") ?>
 
