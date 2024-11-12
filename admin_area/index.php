@@ -38,7 +38,7 @@
                     <p class="text-light text-center">Admin Name</p>
                 </div>
                 <div class="button text-center">
-                    <button><a href="" class="nav-link text-light bg-info m-1">Insert Products</a></button>
+                    <button><a href="/admin_area/index.php?insert_product" class="nav-link text-light bg-info m-1">Insert Products</a></button>
                     <button><a href="" class="nav-link text-light bg-info m-1">View Products</a></button>
                     <button><a href="/admin_area/index.php?insert_category" class="nav-link text-light bg-info m-1">Insert Categories</a></button>
                     <button><a href="" class="nav-link text-light bg-info m-1">View Categories</a></button>
@@ -59,12 +59,14 @@
             if (isset($_GET['insert_brand'])) {
                 include('insert_brands.php');
             }
+            if (isset($_GET['insert_product'])) {
+                include('insert_products.php');
+            }
             ?>
         </div>
         <!-- footer -->
-        <div class="bg-info p-3 text-center footer">
-            <p>All rights reserved * eCom * 2024</p>
-        </div>
+        <?php include("../includes/footer.php") ?>
+
     </div>
 
 

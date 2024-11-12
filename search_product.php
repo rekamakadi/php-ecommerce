@@ -31,7 +31,7 @@ session_start();
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="display_all.php">Products</a>
@@ -47,7 +47,6 @@ session_start();
                             </li>";
                         }
                         ?>
-
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>
                         </li>
@@ -58,7 +57,7 @@ session_start();
                             <a class="nav-link" href="#">Total Price: <?php total_cart_price() ?>/-</a>
                         </li>
                     </ul>
-                    <form class="d-flex" action="search_product.php" method="get">
+                    <form class="d-flex" action="" method="get">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_data">
                         <input type="submit" value="Search" class="btn btn-outline-light" name="search_data_product">
                     </form>
@@ -113,11 +112,9 @@ session_start();
 
                 <!-- fetching products -->
                 <?php
-                getproducts();
+                search_product();
                 get_unique_categories();
                 get_unique_brands();
-                // $ip = getIPAddress();
-                // echo 'User Real IP Address - ' . $ip;
                 ?>
             </div>
         </div>

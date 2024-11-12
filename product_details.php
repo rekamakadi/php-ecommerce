@@ -2,6 +2,7 @@
 include('functions/common_function.php');
 include('includes/connect.php');
 session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +48,6 @@ session_start();
                             </li>";
                         }
                         ?>
-
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>
                         </li>
@@ -106,18 +106,15 @@ session_start();
     </div>
 
     <!-- content -->
-    <div class="row">
+    <div class="row px-1">
         <div class="col-md-10">
             <!-- products -->
             <div class="row">
-
                 <!-- fetching products -->
                 <?php
-                getproducts();
+                view_details();
                 get_unique_categories();
                 get_unique_brands();
-                // $ip = getIPAddress();
-                // echo 'User Real IP Address - ' . $ip;
                 ?>
             </div>
         </div>
