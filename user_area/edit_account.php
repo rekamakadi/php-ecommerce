@@ -1,6 +1,5 @@
 <?php
 include('../includes/connect.php');
-session_start();
 
 if (!isset($_SESSION['username'])) {
     echo "<script>alert('Please log in first');</script>";

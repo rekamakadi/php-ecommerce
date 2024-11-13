@@ -25,7 +25,7 @@
 
     <h3 class="text-success">My Orders</h3>
     <table class="table table-bordered mt-5">
-        <thead class="thead">
+        <thead>
             <tr>
                 <th>Sl no</th>
                 <th>Amount Due</th>
@@ -36,7 +36,7 @@
                 <th>Status</th>
             </tr>
         </thead>
-        <tbody class="tbody">
+        <tbody>
             <?php
             $get_order_deteails = "SELECT * FROM user_orders WHERE user_id = $user_id";
             $result_orders = mysqli_query($con, $get_order_deteails);

@@ -8,16 +8,6 @@
     overflow-x: hidden;
 }
 
-.thead {
-    background-color: #5bc0de; 
-    color: #ffffff;
-}
-
-.tbody {
-    background-color: #6c757d;
-    color: #ffffff;
-}
-
 .logo {
     width: 5%;
     height: 5%;
@@ -47,3 +37,4 @@
     height: 80px;
     object-fit: contain;
 }
+
