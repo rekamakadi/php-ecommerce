@@ -1,5 +1,6 @@
 <?php
 include('../functions/common_function.php');
+include('../includes/connect.php');
 session_start();
 if (isset($_GET['order_id'])) {
     $order_id = $_GET['order_id'];
@@ -8,6 +9,20 @@ if (isset($_GET['order_id'])) {
     $row_fetch = mysqli_fetch_assoc($result);
     $invoice_number = $row_fetch['invoice_number'];
     $amount_due = $row_fetch['amount_due'];
+}
+
+if (isset($_POST['confirm_payment'])) {
+    $invoice_number = $_POST['invoice_number'];
+    $amount = $_POST['amount'];
+    $payment_mode = $_POST['payment_mode'];
+    $insert_query = "INSERT INTO user_payments (order_id, invoice_number, amount, payment_mode) VALUES ($order_id, $invoice_number, $amount, '$payment_mode')";
+    $result = mysqli_query($con, $insert_query);
+    if ($result){
+        echo "<h3 class='text-center text-light'>Successfully completed the payment</h3>";
+        echo "<script>window.open('profile.php?my_orders','_self')</script>";
+    }
+    $update_orders = "UPDATE user_orders SET order_status = 'Complete' WHERE order_id = $order_id";
+    $result_update = mysqli_query($con, $update_orders);
 }
 
 ?>
