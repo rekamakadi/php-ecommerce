@@ -1,11 +1,4 @@
 <?php
-include('../includes/connect.php');
-
-if (!isset($_SESSION['username'])) {
-    echo "<script>alert('Please log in first');</script>";
-    echo "<script>window.open('login.php', '_self');</script>";
-    exit();
-}
 
 $user_session_name = $_SESSION['username'];
 
@@ -53,38 +46,25 @@ if (isset($_POST['user_update'])) {
 ?>
 
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit account</title>
-</head>
-
-<body>
-    <h3 class="text-center text-success mb-4">Edit Account</h3>
-    <form action="" method="post" enctype="multipart/form-data" class="text-center">
-        <div class="form-outline mb-4">
-            <input type="text" class="form-control w-50 m-auto" name="username" value="<?php echo $username ?>">
-        </div>
-        <div class="form-outline mb-4">
-            <input type="email" class="form-control w-50 m-auto" name="user_email" value="<?php echo $user_email ?>">
-        </div>
-        <div class="form-outline mb-4 d-flex w-50 m-auto">
-            <input type="file" class="form-control m-auto" name="user_image">
-            <?php if (!empty($user_image)) { ?>
-                <img src="./user_images/<?php echo $user_image ?>" alt="" class="d-block w-25 h-25 m-auto p-4 object-fit-contain">
-            <?php } ?>
-        </div>
-        <div class="form-outline mb-4">
-            <input type="text" class="form-control w-50 m-auto" name="user_address" value="<?php echo $user_address ?>">
-        </div>
-        <div class="form-outline mb-4">
-            <input type="text" class="form-control w-50 m-auto" name="user_mobile" value="<?php echo $user_mobile ?>">
-        </div>
-        <input type="submit" value="Update" class="bg-info py-2 px-3 border-0 mb-4" name="user_update">
-    </form>
-</body>
-
-</html>
+<h3 class="text-center text-success mb-4">Edit Account</h3>
+<form action="" method="post" enctype="multipart/form-data" class="text-center">
+    <div class="form-outline mb-4">
+        <input type="text" class="form-control w-50 m-auto" name="username" value="<?php echo $username ?>">
+    </div>
+    <div class="form-outline mb-4">
+        <input type="email" class="form-control w-50 m-auto" name="user_email" value="<?php echo $user_email ?>">
+    </div>
+    <div class="form-outline mb-4 d-flex w-50 m-auto">
+        <input type="file" class="form-control m-auto" name="user_image">
+        <?php if (!empty($user_image)) { ?>
+            <img src="./user_images/<?php echo $user_image ?>" alt="" class="d-block w-25 h-25 m-auto p-4 object-fit-contain">
+        <?php } ?>
+    </div>
+    <div class="form-outline mb-4">
+        <input type="text" class="form-control w-50 m-auto" name="user_address" value="<?php echo $user_address ?>">
+    </div>
+    <div class="form-outline mb-4">
+        <input type="text" class="form-control w-50 m-auto" name="user_mobile" value="<?php echo $user_mobile ?>">
+    </div>
+    <input type="submit" value="Update" class="bg-info py-2 px-3 border-0 mb-4" name="user_update">
+</form>
