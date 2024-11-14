@@ -45,9 +45,9 @@ if (isset($_GET['edit_products'])) {
             <input type="text" class="form-control" name="product_keyword" required="required" value="<?php echo $product_keyword ?>">
         </div>
         <div class="form-outline w-50 m-auto mb-4">
-            <label for="product_category" class="form-label">Product Category</label>
-            <select name="product_category" id="" class="form-select">
-                <option value='<?php echo $category_title ?>'><?php echo $category_title ?></option>
+            <label for="category_id" class="form-label">Product Category</label>
+            <select name="category_id" id="" class="form-select">
+                <option value='<?php echo $category_id ?>'><?php echo $category_title ?></option>
                 <?php
                 $select_category_all = "SELECT * FROM categories";
                 $result_category_all = mysqli_query($con, $select_category_all);
@@ -60,9 +60,9 @@ if (isset($_GET['edit_products'])) {
             </select>
         </div>
         <div class="form-outline w-50 m-auto mb-4">
-            <label for="product_brand" class="form-label">Product Brand</label>
-            <select name="product_brand" id="" class="form-select">
-                <option value="<?php echo $brand_title ?>"><?php echo $brand_title ?></option>
+            <label for="brand_id" class="form-label">Product Brand</label>
+            <select name="brand_id" id="" class="form-select">
+                <option value="<?php echo $brand_id ?>"><?php echo $brand_title ?></option>
                 <?php
                 $select_brand_all = "SELECT * FROM brands";
                 $result_brand_all = mysqli_query($con, $select_brand_all);
@@ -77,22 +77,22 @@ if (isset($_GET['edit_products'])) {
         <div class="form-outline w-50 m-auto mb-4">
             <label for="product_image1" class="form-label">Product Image1</label>
             <div class="d-flex">
-                <input type="file" class="form-control w-90 m-auto" name="product_image1" required="required">
+                <input type="file" class="form-control w-90 m-auto" name="product_image1">
                 <img src="./product_images/<?php echo $product_image1 ?>" alt="" class="w-25 m-auto object-fit-contain">
             </div>
         </div>
         <div class="form-outline w-50 m-auto mb-4">
             <label for="product_image2" class="form-label">Product Image2</label>
             <div class="d-flex">
-                <input type="file" class="form-control w-90 m-auto" name="product_image2" required="required">
-                <img src="./product_images/<?php echo $product_image1 ?>" alt="" class="w-25 m-auto object-fit-contain">
+                <input type="file" class="form-control w-90 m-auto" name="product_image2">
+                <img src="./product_images/<?php echo $product_image2 ?>" alt="" class="w-25 m-auto object-fit-contain">
             </div>
         </div>
         <div class="form-outline w-50 m-auto mb-4">
             <label for="product_image3" class="form-label">Product Image3</label>
             <div class="d-flex">
-                <input type="file" class="form-control w-90 m-auto" name="product_image3" required="required">
-                <img src="./product_images/<?php echo $product_image1 ?>" alt="" class="w-25 m-auto object-fit-contain">
+                <input type="file" class="form-control w-90 m-auto" name="product_image3">
+                <img src="./product_images/<?php echo $product_image3 ?>" alt="" class="w-25 m-auto object-fit-contain">
             </div>
         </div>
         <div class="form-outline w-50 m-auto mb-4">
@@ -100,7 +100,41 @@ if (isset($_GET['edit_products'])) {
             <input type="text" class="form-control" name="product_price" required="required" value="<?php echo $product_price ?>">
         </div>
         <div class="text-center">
-            <input type="submit" name="edit_product" id="edit_product" value="Update Product" class="btn btn-info px-3 mb-3">
+            <input type="submit" name="edit_product" value="Update Product" class="btn btn-info px-3 mb-3">
         </div>
     </form>
 </div>
+
+<!-- editing products -->
+<?php
+if (isset($_POST['edit_product'])) {
+    $product_title = $_POST['product_title'];
+    $product_description = $_POST['product_description'];
+    $product_keyword = $_POST['product_keyword'];
+    $category_id = $_POST['category_id'];
+    $brand_id = $_POST['brand_id'];
+    $product_price = $_POST['product_price'];
+
+    $product_image1 = $_FILES['product_image1']['name'];
+    $product_image2 = $_FILES['product_image2']['name'];
+    $product_image3 = $_FILES['product_image3']['name'];
+
+    $temp_image1 = $_FILES['product_image1']['tmp_name'];
+    $temp_image2 = $_FILES['product_image2']['tmp_name'];
+    $temp_image3 = $_FILES['product_image3']['tmp_name'];
+
+    // If a new image is uploaded, move it to the folder and use it
+    // Keep existing image if no new image is uploaded
+    $product_image1 = !empty($temp_image1) ? (move_uploaded_file($temp_image1, "./product_images/$product_image1") ? $product_image1 : '') : $row['product_image1'];
+    $product_image2 = !empty($temp_image2) ? (move_uploaded_file($temp_image2, "./product_images/$product_image2") ? $product_image2 : '') : $row['product_image2'];
+    $product_image3 = !empty($temp_image3) ? (move_uploaded_file($temp_image3, "./product_images/$product_image3") ? $product_image3 : '') : $row['product_image3'];
+
+    // query to update products
+    $update_product = "UPDATE products SET product_title = '$product_title', product_description = '$product_description', product_keyword = '$product_keyword', category_id = '$category_id', brand_id = '$brand_id', product_image1 = '$product_image1', product_image2 = '$product_image2', product_image3 = '$product_image3', product_price = '$product_price', date = NOW() WHERE product_id = $edit_id";
+    $result_update = mysqli_query($con, $update_product);
+    if($result_update) {
+        echo "<script>alert('Product updated successfully')</script>";
+        echo "<script>window.open('./index.php?view_products', '_self')</script>";
+    }
+}
+?>
